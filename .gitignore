@@ -160,7 +160,7 @@ cython_debug/
 #.idea/
 
 # Endang
-# .vscode/
+.vscode/
 mynotes.txt
 resources/
 debug_logs/

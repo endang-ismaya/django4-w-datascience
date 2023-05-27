@@ -1,5 +1,5 @@
 {
-    "python.formatting.provider": "black",
+    "python.formatting.provider": "none",
     "emmet.includeLanguages": {
         "django-html": "html"
     },
@@ -58,5 +58,8 @@
             "type": "line",
             "gutterIcon": true
         }
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
     }
 }
