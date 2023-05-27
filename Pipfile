@@ -7,6 +7,9 @@ name = "pypi"
 django = "*"
 django-dotenv = "*"
 pillow = "*"
+pandas = "*"
+matplotlib = "*"
+seaborn = "*"
 
 [dev-packages]
 flake8 = "*"
