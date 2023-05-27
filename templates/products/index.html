@@ -5,7 +5,9 @@
 {% block content %}
   <h1>Welcome to Home</h1>
   <br>
-  {{ products_pd | safe }}
+  {{ products_df | safe }}
   <br>
-  {{ purchases_pd | safe }}
+  {{ purchases_df | safe }}
+  <br>
+  {{ df | safe }}
 {% endblock content %}
