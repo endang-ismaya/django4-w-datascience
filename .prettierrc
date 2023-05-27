@@ -1,0 +1,14 @@
+{
+    "singleQuote": false,
+    "tabWidth": 4,
+    "overrides": [
+        {
+            "files": ["*.css", "*.html"],
+            "options": {
+                "tabWidth": 4
+            }
+        }
+    ],
+    "bracketSpacing": true,
+    "printWidth": 80
+}

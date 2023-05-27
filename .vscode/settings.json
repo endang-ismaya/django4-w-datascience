@@ -1,0 +1,62 @@
+{
+    "python.formatting.provider": "black",
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    "files.associations": {
+        "**/*.html": "html",
+        "**/templates/**/*.html": "django-html",
+        "**/templates/**/*": "django-txt",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements",
+        "*.css": "tailwindcss"
+    },
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "tailwindCSS.includeLanguages": {
+        "plaintext": "html"
+    },
+    "editor.detectIndentation": false,
+    "[django-html]": {
+        "editor.defaultFormatter": "monosans.djlint",
+        "editor.trimAutoWhitespace": true,
+        "editor.tabSize": 2
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 4
+    },
+    "json.schemaDownload.enable": true,
+    "[html][django-html][handlebars][hbs][mustache][jinja][jinja-html][nj][njk][nunjucks][twig]": {
+        "editor.defaultFormatter": "monosans.djlint"
+    },
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.highlights.defaultHighlight": {
+        "icon": "alert",
+        "type": "text",
+        "foreground": "#d6a960",
+        "background": "#0B2447",
+        "opacity": 50,
+        "iconColour": "#FFD93D"
+    },
+    "todo-tree.highlights.customHighlight": {
+        "TODO": {
+            "icon": "alert",
+            "type": "line",
+            "gutterIcon": true
+        },
+        "FIXME": {
+            "icon": "bell",
+            "type": "line",
+            "gutterIcon": true
+        }
+    }
+}
