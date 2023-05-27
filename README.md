@@ -1,2 +1,3 @@
-# django-project-setup-v1
-For Django Setup Project with pipenv, flake8, black, djlint
+# Django with Data Science
+
+Django with pandas, numpy, and seaborn
