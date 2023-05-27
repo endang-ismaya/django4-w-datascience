@@ -9,6 +9,42 @@ from apps.products.utils import get_plot
 
 def index(request):
     error_message = None
+
+    products = Product.objects.all()
+    products_df = pd.DataFrame(products.values())
+    products_df["product_id"] = products_df["id"]
+
+    purchases = Purchase.objects.all()
+    purchases_df = pd.DataFrame(purchases.values())
+
+    if purchases_df.shape[0] > 0:
+        # merge
+        df = (
+            pd.merge(purchases_df, products_df, on="product_id")
+            .drop(["id_y", "updated_at_y", "created_at_y"], axis=1)
+            .drop(["updated_at_x"], axis=1)
+            .rename({"id_x": "id", "created_at_x": "created_at"}, axis=1)
+        )
+
+    else:
+        error_message = "No records available."
+
+    if df is not None:
+        df = df.to_html()
+    else:
+        df = "<br>"
+
+    context = {
+        "error_message": error_message,
+        "products_df": products_df.to_html(),
+        "purchases_df": purchases_df.to_html(),
+        "df": df,
+    }
+    return render(request, "products/index.html", context)
+
+
+def statistics(request):
+    error_message = None
     df = None
     graph = None
     price = None
@@ -19,6 +55,11 @@ def index(request):
 
     purchases = Purchase.objects.all()
     purchases_df = pd.DataFrame(purchases.values())
+
+    if df is not None:
+        df = df.to_html()
+    else:
+        df = "<br>"
 
     if purchases_df.shape[0] > 0:
         # merge
@@ -79,7 +120,7 @@ def index(request):
         "graph": graph,
         "price": price,
     }
-    return render(request, "products/index.html", context)
+    return render(request, "products/statistics.html", context)
 
 
 def add_purchase(request):

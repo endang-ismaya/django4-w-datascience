@@ -3,74 +3,17 @@
   Home
 {% endblock title %}
 {% block content %}
-  <h1>Products Information</h1>
-  <div class="ui modal mymodal">
-    <div class="header">Price Data</div>
-    <div class="ui container">
-      <ul>
-        <li>
-          <strong>Count:</strong> {{ price.count }}
-        </li>
-        <li>
-          <strong>Mean:</strong> {{ price.mean | floatformat }}
-        </li>
-        <li>
-          <strong>Median:</strong> {{ price.median }}
-        </li>
-        <li>
-          <strong>Min:</strong> {{ price.min }}
-        </li>
-        <li>
-          <strong>Max:</strong> {{ price.max }}
-        </li>
-        <li>
-          <strong>Std dev:</strong> {{ price.std | floatformat }}
-        </li>
-      </ul>
-    </div>
-  </div>
+  <h1>Products Data</h1>
   <div class="block-center">
     {% if error_message %}
       <div class="ui negative message">
         <i class="close icon"></i>
         <div class="header">{{ error_message }}</div>
       </div>
+    {% else %}
+      {{ products_df | safe }}
+      {{ purchases_df | safe }}
+      {{ df | safe }}
     {% endif %}
-    {% if request.POST %}
-      {% if graph %}<img src="data:image/png;base64, {{ graph | safe }}" alt="">{% endif %}
-    {% endif %}
-    <form class="ui form" action="{% url 'products__home' %}" method="post">
-      {% csrf_token %}
-      <div class="field">
-        <label>Choose a chart type:</label>
-        <div class="ui selection dropdown">
-          <input type="hidden" name="sales">
-          <i class="dropdown icon"></i>
-          <div class="default text">-----------</div>
-          <div class="menu">
-            <div class="item" value="bar">Bar</div>
-            <div class="item" value="line">Line</div>
-            <div class="item" value="count">Count</div>
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <div class="two fields">
-          <div class="field">
-            <label for="date_from">Date from:</label>
-            <input type="date" name="date_from">
-          </div>
-          <div class="field">
-            <label for="">Date to:</label>
-            <input type="date" name="date_to">
-          </div>
-        </div>
-      </div>
-      <button type="submit" class="ui primary button">Submit</button>
-    </form>
-    <br>
-    <br>
-    <button class="ui button teal" id="modal-btn">See Summary</button>
-    <a class="ui button olive" href="{% url 'products__add_purchase' %}">Add Records</a>
   </div>
 {% endblock content %}

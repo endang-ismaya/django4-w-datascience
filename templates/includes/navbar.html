@@ -1,0 +1,11 @@
+{% url 'products__home' as path_to_products %}
+{% url 'products__statistics' as path_to_statistics %}
+{% url 'products__add_purchase' as path_to_add_record %}
+<div class="ui secondary pointing menu">
+  <a class="item {% if request.path == path_to_products %}active{% endif %}" href={{ path_to_products }}>Home</a>
+  <a class="item {% if request.path == path_to_statistics %}active{% endif %}" href={{ path_to_statistics }}>statistics</a>
+  <a class="item {% if request.path == path_to_add_record %}active{% endif %}" href={{ path_to_add_record }}>Add Purchase</a>
+  <div class="right menu">
+    <a class="ui item">Logout</a>
+  </div>
+</div>

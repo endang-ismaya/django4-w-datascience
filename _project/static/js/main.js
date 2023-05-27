@@ -9,4 +9,7 @@ $(document).ready(function () {
     $("#modal-btn").click(function () {
         $(".ui.modal").modal("show");
     });
+
+    // ui celled table
+    $("table").addClass("ui celled table");
 });

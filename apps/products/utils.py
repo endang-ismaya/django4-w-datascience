@@ -48,6 +48,7 @@ def get_plot(chart_type, *args, **kwargs):
         plt.title(title)
         sns.countplot(x="name", data=data)
 
+    plt.xticks(rotation=45)
     plt.tight_layout()
 
     graph = get_image()
