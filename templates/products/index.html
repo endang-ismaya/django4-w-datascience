@@ -4,8 +4,32 @@
 {% endblock title %}
 {% block content %}
   <h1>Products Information</h1>
-  {{ df | safe }}
-  <div>
+  <div class="ui modal mymodal">
+    <div class="header">Price Data</div>
+    <div class="ui container">
+      <ul>
+        <li>
+          <strong>Count:</strong> {{ price.count }}
+        </li>
+        <li>
+          <strong>Mean:</strong> {{ price.mean | floatformat }}
+        </li>
+        <li>
+          <strong>Median:</strong> {{ price.median }}
+        </li>
+        <li>
+          <strong>Min:</strong> {{ price.min }}
+        </li>
+        <li>
+          <strong>Max:</strong> {{ price.max }}
+        </li>
+        <li>
+          <strong>Std dev:</strong> {{ price.std | floatformat }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="block-center">
     {% if error_message %}
       <div class="ui negative message">
         <i class="close icon"></i>
@@ -44,5 +68,9 @@
       </div>
       <button type="submit" class="ui primary button">Submit</button>
     </form>
+    <br>
+    <br>
+    <button class="ui button teal" id="modal-btn">See Summary</button>
+    <a class="ui button olive" href="{% url 'products__add_purchase' %}">Add Records</a>
   </div>
 {% endblock content %}

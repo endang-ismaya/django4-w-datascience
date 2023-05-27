@@ -30,7 +30,7 @@ def get_image():
 def get_plot(chart_type, *args, **kwargs):
     plt.switch_backend("AGG")
 
-    fig = plt.figure(figsize=(10, 4))
+    plt.figure(figsize=(10, 4))
     x = kwargs.get("x")
     y = kwargs.get("y")
     data = kwargs.get("data")

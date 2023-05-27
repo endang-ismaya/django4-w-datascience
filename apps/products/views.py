@@ -1,6 +1,7 @@
 import pandas as pd
 
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from apps.products.forms import PurchaseForm
 
 from apps.products.models import Product, Purchase
 from apps.products.utils import get_plot
@@ -10,6 +11,7 @@ def index(request):
     error_message = None
     df = None
     graph = None
+    price = None
 
     products = Product.objects.all()
     products_df = pd.DataFrame(products.values())
@@ -26,6 +28,8 @@ def index(request):
             .drop(["updated_at_x"], axis=1)
             .rename({"id_x": "id", "created_at_x": "created_at"}, axis=1)
         )
+
+        price = df["price"]
 
         if request.method == "POST":
             chart_type = request.POST.get("sales")
@@ -73,5 +77,25 @@ def index(request):
         # "purchases_df": purchases_df.to_html(),
         # "df": df,
         "graph": graph,
+        "price": price,
     }
     return render(request, "products/index.html", context)
+
+
+def add_purchase(request):
+    """
+    handle purchase addition
+    """
+    form = PurchaseForm()
+
+    if request.method == "POST":
+        form = PurchaseForm(request.POST)
+
+        if form.is_valid():
+            new_purchased = form.save(commit=False)
+            new_purchased.salesman = request.user
+            new_purchased.save()
+            return redirect("products__home")
+
+    context = {"form": form}
+    return render(request, "products/add.html", context)
