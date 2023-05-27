@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,6 +10,7 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!--Custom css-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- semantic UI -->
     <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
@@ -19,7 +21,11 @@
     </title>
   </head>
   <body>
-    {% block content %}
-    {% endblock content %}
+    {% include "includes/navbar.html" %}
+    <div class="ui container">
+      {% block content %}
+      {% endblock content %}
+    </div>
+    <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

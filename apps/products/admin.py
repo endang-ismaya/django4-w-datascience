@@ -17,6 +17,7 @@ class PurchaseAdmin(admin.ModelAdmin):
         "created_at",
     )
     exclude = ("total_price",)
+    list_editable = ("created_at",)
 
 
 admin.site.register(Product, ProductAdmin)
