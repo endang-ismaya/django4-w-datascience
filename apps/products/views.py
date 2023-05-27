@@ -3,11 +3,13 @@ import pandas as pd
 from django.shortcuts import render
 
 from apps.products.models import Product, Purchase
+from apps.products.utils import get_plot
 
 
 def index(request):
     error_message = None
     df = None
+    graph = None
 
     products = Product.objects.all()
     products_df = pd.DataFrame(products.values())
@@ -30,6 +32,8 @@ def index(request):
             date_from = request.POST.get("date_from")
             date_to = request.POST.get("date_to")
 
+            print("chart_type: ", chart_type)
+
             df["created_at"] = df["created_at"].apply(lambda x: x.strftime("%Y-%m-%d"))
             df_group = df.groupby("created_at", as_index=False)["total_price"].agg(
                 "sum"
@@ -44,7 +48,13 @@ def index(request):
                         "total_price"
                     ].agg("sum")
 
-                    # function to get a graph
+                # function to get a graph
+                graph = get_plot(
+                    chart_type,
+                    x=df_group["created_at"],
+                    y=df_group["total_price"],
+                    data=df,
+                )
 
             else:
                 error_message = "Please select a chart type to continue."
@@ -59,8 +69,9 @@ def index(request):
 
     context = {
         "error_message": error_message,
-        "products_df": products_df.to_html(),
-        "purchases_df": purchases_df.to_html(),
-        "df": df,
+        # "products_df": products_df.to_html(),
+        # "purchases_df": purchases_df.to_html(),
+        # "df": df,
+        "graph": graph,
     }
     return render(request, "products/index.html", context)
