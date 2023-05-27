@@ -79,8 +79,6 @@
   
   ```
 
-  
-
 - mynotes.txt
 
 - .vscode/settings.json
@@ -167,8 +165,6 @@
   ```bash
   pipenv install Pillow
   ```
-
-
 
 ## 5. Setup Project with .env
 
