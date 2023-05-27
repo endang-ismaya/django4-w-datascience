@@ -6,7 +6,12 @@
   <h1>Products Information</h1>
   {{ df | safe }}
   <div>
-    {% if error_message %}{{ error_message }}{% endif %}
+    {% if error_message %}
+      <div class="ui negative message">
+        <i class="close icon"></i>
+        <div class="header">{{ error_message }}</div>
+      </div>
+    {% endif %}
     {% if request.POST %}
       {% if graph %}<img src="data:image/png;base64, {{ graph | safe }}" alt="">{% endif %}
     {% endif %}
