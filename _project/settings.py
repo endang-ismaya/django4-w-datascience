@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # internal apps
     "apps.products",
+    "apps.csvs",
 ]
 
 MIDDLEWARE = [
