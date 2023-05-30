@@ -4,5 +4,23 @@
 {% endblock title %}
 {% block content %}
   <h1>File Upload</h1>
-  <div class="block-center"></div>
+  <div class="block-center">
+    {% if succcess_message %}
+      <div class="ui success message">
+        <i class="close icon"></i>
+        <div class="header">{{ succcess_message }}</div>
+      </div>
+    {% endif %}
+    {% if error_message %}
+      <div class="ui negative message">
+        <i class="close icon"></i>
+        <div class="header">{{ error_message }}</div>
+      </div>
+    {% endif %}
+    <form action="{% url 'csvs__upload' %}" method="post" enctype="multipart/form-data" class="ui form">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit" class="ui positive button mtop">Upload File</button>
+    </form>
+  </div>
 {% endblock content %}
