@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # internal apps
     "apps.products",
     "apps.csvs",
+    "apps.customers",
 ]
 
 MIDDLEWARE = [
