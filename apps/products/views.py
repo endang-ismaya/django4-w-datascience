@@ -1,10 +1,12 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 from django.shortcuts import redirect, render
 from apps.products.forms import PurchaseForm
 
 from apps.products.models import Product, Purchase
-from apps.products.utils import get_plot
+from apps.products.utils import get_image, get_plot, get_salesman_from_id
 
 
 def index(request):
@@ -140,3 +142,19 @@ def add_purchase(request):
 
     context = {"form": form}
     return render(request, "products/add.html", context)
+
+
+def sales_dist(request):
+    df = pd.DataFrame(Purchase.objects.all().values())
+    df["salesman_id"] = df["salesman_id"].apply(get_salesman_from_id)
+    df.rename({"salesman_id": "salesman"}, axis=1, inplace=True)
+    df["date"] = df["created_at"].apply(lambda x: x.strftime("%Y-%m-%d"))
+    # print(df)
+    plt.switch_backend("Agg")
+    plt.xticks(rotation=45)
+    sns.barplot(x="date", y="total_price", hue="salesman", data=df)
+    plt.tight_layout()
+    graph = get_image()
+
+    # return HttpResponse("hello salesman")
+    return render(request, "products/sales.html", {"graph": graph})
