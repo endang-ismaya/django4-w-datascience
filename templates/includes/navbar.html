@@ -2,11 +2,13 @@
 {% url 'products__statistics' as path_to_statistics %}
 {% url 'products__add_purchase' as path_to_add_record %}
 {% url 'csvs__upload' as path_to_upload_csv %}
+{% url 'customers__home' as path_to_customer %}
 <div class="ui secondary pointing menu">
   <a class="item {% if request.path == path_to_products %}active{% endif %}" href={{ path_to_products }}>Home</a>
   <a class="item {% if request.path == path_to_statistics %}active{% endif %}" href={{ path_to_statistics }}>statistics</a>
   <a class="item {% if request.path == path_to_add_record %}active{% endif %}" href={{ path_to_add_record }}>Add Purchase</a>
   <a class="item {% if request.path == path_to_upload_csv %}active{% endif %}" href={{ path_to_upload_csv }}>Upload File</a>
+  <a class="item {% if request.path == path_to_customer %}active{% endif %}" href={{ path_to_customer }}>Customers</a>
   <div class="right menu">
     <a class="ui item">Logout</a>
   </div>

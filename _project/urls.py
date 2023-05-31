@@ -14,5 +14,6 @@ urlpatterns = [
     path("", views.index),
     path("products/", include("apps.products.urls"), name="products"),
     path("upload/", include("apps.csvs.urls")),
+    path("customers/", include("apps.customers.urls")),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

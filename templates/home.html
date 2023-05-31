@@ -3,6 +3,7 @@
 {% url 'products__statistics' as path_to_statistics %}
 {% url 'products__add_purchase' as path_to_add_record %}
 {% url 'csvs__upload' as path_to_upload_csv %}
+{% url 'customers__home' as path_to_customer %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,6 +50,13 @@
           <div class="content">
             <a class="header" href={{ path_to_upload_csv }}>Upload CSV File</a>
             <div class="description">Upload CSV file into server</div>
+          </div>
+        </div>
+        <div class="item">
+          <i class="large upload middle aligned icon"></i>
+          <div class="content">
+            <a class="header" href={{ path_to_customer }}>Customers</a>
+            <div class="description">Customer</div>
           </div>
         </div>
       </div>
