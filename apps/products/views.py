@@ -8,6 +8,8 @@ from apps.products.forms import PurchaseForm
 from apps.products.models import Product, Purchase
 from apps.products.utils import get_image, get_plot, get_salesman_from_id
 
+from django.contrib.auth.decorators import login_required
+
 
 def index(request):
     error_message = None
@@ -45,6 +47,7 @@ def index(request):
     return render(request, "products/index.html", context)
 
 
+@login_required
 def statistics(request):
     error_message = None
     df = None
@@ -125,6 +128,7 @@ def statistics(request):
     return render(request, "products/statistics.html", context)
 
 
+@login_required
 def add_purchase(request):
     """
     handle purchase addition
@@ -144,6 +148,7 @@ def add_purchase(request):
     return render(request, "products/add.html", context)
 
 
+@login_required
 def sales_dist(request):
     df = pd.DataFrame(Purchase.objects.all().values())
     df["salesman_id"] = df["salesman_id"].apply(get_salesman_from_id)

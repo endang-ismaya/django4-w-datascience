@@ -6,12 +6,18 @@
 {% url 'products__sales' as path_to_sales %}
 <div class="ui secondary pointing menu">
   <a class="item {% if request.path == path_to_products %}active{% endif %}" href={{ path_to_products }}>Home</a>
-  <a class="item {% if request.path == path_to_statistics %}active{% endif %}" href={{ path_to_statistics }}>statistics</a>
-  <a class="item {% if request.path == path_to_add_record %}active{% endif %}" href={{ path_to_add_record }}>Add Purchase</a>
-  <a class="item {% if request.path == path_to_upload_csv %}active{% endif %}" href={{ path_to_upload_csv }}>Upload File</a>
-  <a class="item {% if request.path == path_to_customer %}active{% endif %}" href={{ path_to_customer }}>Customers</a>
-  <a class="item {% if request.path == path_to_sales %}active{% endif %}" href={{ path_to_sales }}>Product Sales</a>
+  {% if user.is_authenticated %}
+    <a class="item {% if request.path == path_to_statistics %}active{% endif %}" href={{ path_to_statistics }}>statistics</a>
+    <a class="item {% if request.path == path_to_add_record %}active{% endif %}" href={{ path_to_add_record }}>Add Purchase</a>
+    <a class="item {% if request.path == path_to_upload_csv %}active{% endif %}" href={{ path_to_upload_csv }}>Upload File</a>
+    <a class="item {% if request.path == path_to_customer %}active{% endif %}" href={{ path_to_customer }}>Customers</a>
+    <a class="item {% if request.path == path_to_sales %}active{% endif %}" href={{ path_to_sales }}>Product Sales</a>
+  {% endif %}
   <div class="right menu">
-    <a class="ui item">Logout</a>
+    {% if user.is_authenticated %}
+      <a class="ui item" href="{% url 'logout' %}">Logout</a>
+    {% else %}
+      <a class="ui item" href="{% url 'login' %}">Login</a>
+    {% endif %}
   </div>
 </div>
